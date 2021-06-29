@@ -1,0 +1,39 @@
+nav {
+    background: #EB3349;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F45C43, #EB3349);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F45C43, #EB3349); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+p.centrado {
+    text-align: center;
+  }
+
+p.izquierda {
+    text-align: left;
+  }
+
+.gradiente{
+    background: #EB3349;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F45C43, #EB3349);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F45C43, #EB3349); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.letras{
+    font-weight: bold;
+    align-content: center;
+    text-align: center;
+}
+
+.barra{
+  background: #EB3349;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #F45C43, #EB3349);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #F45C43, #EB3349); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: center;
+  font-weight: bold;
+}
+
+p.contenido{
+  text-align: left;
+}

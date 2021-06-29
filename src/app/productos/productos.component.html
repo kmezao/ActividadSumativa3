@@ -1,0 +1,163 @@
+<header>
+    <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="../assets/banner.png" alt="" height="250">
+      </div>
+</header>
+
+  <nav class="navbar navbar-expand-lg" aria-label="Eighth navbar example">
+    <div class="container">
+      <a class="navbar-brand" href="#" style="color: white;" >Bienvenido</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample07">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" style="color: white;" href="#">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="productos" style="color: white;">Productos</a>
+          </li>
+        </ul>
+        <form>
+          <div class="d-flex justify-content-between">
+            <span>
+            <input class="form-control" [formControl]="clave" ng-model="searchText" type="text" placeholder="Search" aria-label="Search">
+            </span>
+            <span>
+            <button (click) = "busquedaClave()" class="btn btn-outline-success" type="submit" style="background-color: white; border-color: white; color: #F45C43;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg></button>
+          </span>
+        </div>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <br>
+
+  <div class="barra">
+      <div class="row">
+          <div class="col"><span class="text-white">DESPACHO GRATIS A TODO CHILE</span></div>
+          <div class="col"><span class="text-white">6 CUOTAS SIN INTERES</span></div>
+          <div class="col"><span class="text-white">GARANTIA EXTENDIDA</span></div>
+      </div>
+  </div>
+<br>
+  <app-carrusel></app-carrusel>
+<br>
+  <div class="container">
+      <div class="row">  
+              <div class="col-md-4 mt-8">
+              </div>
+              <div class="col-md-4 mt-3">
+                  <p class="contenido"><button data-bs-target="#exampleModal" data-bs-toggle="modal" class="btn float-end letras" style="background-color: #F45C43; border-color: #F45C43; color: white;"><i class="bi bi-cart"></i> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                  </svg> Carrito <span *ngIf="productosCarrito.length>0">({{productosCarrito.length}})</span></button></p>
+              </div>
+      </div>
+  </div>
+  <hr>
+  
+  <div class="container mt-5">
+      <div class="row">
+          <div class="col">
+              <h4 class="letras">PRODUCTOS</h4><br>
+              <div class="row">
+                  <div class="col-md-4 mb-4" *ngFor="let items of productosActual; let i = index; filter : searchText">
+                    <p class="centrado"><img width="250" src="{{items.img}}"><br></p>
+                    <p class="centrado"><span class="fw-bolder">{{items.nombre}}</span><br><hr></p>
+                    <p class="centrado"><span >{{items.precio | currency:'CLP'}}</span><br></p>
+                     
+                        <p class="centrado"><button (click)="agregarProducto(i)" class="btn btn-primary" style="background-color: #F45C43; border-color: #F45C43;"><i  style="color:white" class="fa fa-plus-circle" aria-hidden="true"></i>Agregar al carrito </button>
+                        </p>
+                        
+                    </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  
+  <!-- Modal Carrito de compra -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header border-bottom-0">
+              <h5 class="modal-title" id="exampleModalLabel">Carrito de compra</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <table class="table table-image">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Producto</th>
+                      <th scope="col">Precio</th>
+                      <th scope="col">Cantidad</th>
+                      <th scope="col">Total</th>
+                      <th scope="col">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor = "let p of productosCarrito; let j = index">
+                      <td class="w-25">
+                        <img src="{{p.img}}" class="img-fluid img-thumbnail" alt="Sheep">
+                      </td>
+                      <td>{{p.nombre}}</td>
+                      <td>{{p.precio}}</td>
+                      <td style="width:15%;"><input type="text" class="form-control" [formControl]="cantidad" id="input1" placeholder="{{productosCantidad[j+1].cant}}"></td>
+                      <td>{{p.precio*productosCantidad[j+1].cant}}</td>
+                      <td>
+                        <div class="d-flex justify-content-between">
+                          <span>
+                        <button (click) = "eliminarProducto(p.codigo)" class="btn btn-danger btn-sm ">
+                          <i class="fa fa-times"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
+                          </svg></i>
+                        </button> &nbsp;
+                        </span>
+                        <span>
+                        <button (click) = "actualizarProducto(p.codigo)"  href="#" class="btn btn-success btn-sm">
+                          <i class="fas fa-sync-alt"></i> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
+                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                          </svg>
+                        </button>
+                        </span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <th>Total:</th>
+                      <td>{{totalDinero | currency:'CLP'}}</td>
+                      <td></td>
+                  </tr>
+                  </tbody>
+                </table> 
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button data-bs-dismiss="modal" type="button" routerLink="../pago" class="btn btn-primary">Pagar</button>
+          </div>
+      </div>
+  </div>
+  </div>
+
+  <div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link letras" href="#" style="color: #F45C43;">Previous</a></li>
+            <li class="page-item"><a class="page-link letras" href="#" style="color: #F45C43;">1</a></li>
+            <li class="page-item"><a class="page-link letras" href="#" style="color: #F45C43;">2</a></li>
+            <li class="page-item"><a class="page-link letras" href="#" style="color: #F45C43;">3</a></li>
+            <li class="page-item"><a class="page-link letras" href="#" style="color: #F45C43;">Next</a></li>
+        </ul>
+
+  </nav>
+</div>
+  
+  <app-footer></app-footer>

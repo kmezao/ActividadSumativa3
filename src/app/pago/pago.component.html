@@ -1,0 +1,207 @@
+<div class="container">
+
+  <main>
+    
+    <div class="py-5 text-center">
+
+      <img class="d-block mx-auto mb-4" src="../assets/banner.png" alt="" width="400">
+
+      <h2>Pago</h2>
+
+      </div>
+
+
+<div class="container">
+  <main>
+    <div class="row g-5">
+      <div class="col-md-5 col-lg-4 order-md-last">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-primary">Tus compras</span>
+          <span class="badge bg-primary rounded-pill">3</span>
+        </h4>
+        <form class="card p-2">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Promo code">
+            <button type="submit" class="btn btn-secondary">Redeem</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- formulario de compras-->
+
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Datos del comprador</h4>
+        <form class="needs-validation" (ngSubmit)="onSubmit()" [formGroup]="reactiveForm">
+          <div class="row g-3">
+
+            <!--Ingreso nombre-->
+            <div class="col-12">
+              <label for="firstName" class="form-label">Nombre</label>
+              <input type="text" class="form-control"  placeholder="Nombre" name="name" formControlName="name">
+              <div *ngIf="submitted && f.name.errors">
+                <div class="alert alert-danger" role="alert" *ngIf="f.name.errors.required">Ingrese nombre</div>
+                <div class="alert alert-danger" role="alert" *ngIf="f.name.errors.minlength">Ingrese un nombre correcto</div>
+              </div>
+            </div>
+
+            <!--Ingreso apellido-->
+            <div class="col-12">
+              <label for="lastName" class="form-label">Apellido</label>
+              <input type="text" class="form-control"  placeholder="Apellido" name="last" formControlName="last">
+              <div *ngIf="submitted && f.last.errors">
+                <div  class="alert alert-danger" role="alert" *ngIf="f.last.errors.required">Ingrese apellido</div>
+                <div  class="alert alert-danger" role="alert" *ngIf="f.last.errors.minlength">Ingrese un apellido correcto</div>
+              </div>
+            </div>
+
+            <!--Ingreso Correo-->
+
+            <div class="col-12">
+              <label for="Email" class="form-label">Email</label>
+              <input type="text" class="form-control" placeholder="Email" name="email" formControlName="email">
+              <div *ngIf="submitted && f.email.errors">
+                <div class="alert alert-danger" role="alert" *ngIf="f.email.errors.required">Ingrese correo</div>
+                <div class="alert alert-danger" role="alert" *ngIf="f.email.errors.email">Ingrese un correo correcto</div>
+              </div>
+            </div>
+
+            <!--Ingreso Direccion-->
+
+            <div class="col-12">
+              <label for="Address" class="form-label">Direccion</label>
+              <input type="text" class="form-control" placeholder="Direccion" name="address" formControlName="address">
+              <div *ngIf="submitted && f.address.errors">
+                <div class="alert alert-danger" role="alert" *ngIf="f.address.errors.required">Ingrese direccion</div>
+                <div class="alert alert-danger" role="alert" *ngIf="f.address.errors.maxlength">La direccion supera el maximo</div>
+                <div class="alert alert-danger" role="alert" *ngIf="f.address.errors.minlength">Direccion incorrecta</div>
+              </div>
+            </div>
+
+
+            <!--Ingreso Pais-->
+            <div class="col-md-5">
+              <label for="country" class="form-label">Pais</label>
+              <select class="form-select" id="country" required>
+                <option value="">Seleccionar...</option>
+                <option>Chile</option>
+                <option>Argentina</option>
+                <option>Peru</option>
+                <option>Bolivia</option>
+              </select>
+            </div>
+
+            <!--Ingreso Region-->
+            <div class="col-md-5">
+              <label for="country" class="form-label">Region</label>
+                <select class="form-select" id="country" required>
+                  <option value="">Seleccionar...</option>
+                  <option>Region metropolitana</option>
+                </select>
+            </div>
+
+            <!--Ingreso Comuna-->
+            <div class="col-md-5">
+              <label for="country" class="form-label">Comuna</label>
+                <select class="form-select" id="country" required>
+                  <option value="">Seleccionar...</option>
+                  <option>Maipu</option>
+                  <option>Cerrillos</option>
+                </select>
+            </div>
+
+
+            <!--Ingreso Codigo postal-->
+
+            <div class="col-md-3">
+              <label for="codpostal" class="form-label">Codigo Postal</label>
+              <input type="text" class="form-control"  placeholder="Postal" name="postal" formControlName="postal">
+                <div *ngIf="submitted && f.postal.errors">
+                  <div class="alert alert-danger" role="alert" *ngIf="f.postal.errors.required">Ingrese codigo postal</div>
+                  <div class="alert alert-danger" role="alert" *ngIf="f.postal.errors.minlength">Ingrese un codigo postal correcto</div>
+                  <div class="alert alert-danger" role="alert" *ngIf="f.postal.errors.maxlength">Ingrese un codigo postal correcto</div>
+                </div>
+            </div>
+
+          </div>
+
+          <hr class="my-4">
+
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="save-info">
+            <label class="form-check-label" for="save-info">Guardar mi informacion</label>
+          </div>
+
+          <hr class="my-4">
+
+          <h4 class="mb-3">Metodo de pago</h4>
+
+          <div class="my-3">
+            <div class="form-check">
+              <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+              <label class="form-check-label" for="credit">Tarjeta de Credito</label>
+            </div>
+            <div class="form-check">
+              <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="debit">Tarjeta de Debito</label>
+            </div>
+            <div class="form-check">
+              <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="paypal">PayPal</label>
+            </div>
+          </div>
+
+          <div class="row gy-3">
+            <div class="col-md-6">
+              <label for="cc-name" class="form-label">Nombre en la tarjeta</label>
+              <input type="text" class="form-control"  placeholder="Nombre en la tarjeta" name="ccta" formControlName="ccta">
+              <div *ngIf="submitted && f.ccta.errors">
+                <div class="alert alert-danger" role="alert" *ngIf="f.ccta.errors.required">Ingrese nombre</div>
+                <div class="alert alert-danger" role="alert" *ngIf="f.ccta.errors.minlength">Ingrese un nombre correcto</div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="cc-number" class="form-label">Numero de la tarjeta</label>
+              <input type="text" class="form-control"  placeholder="Numero de la tarjeta" name="cta" formControlName="cta">
+              <div *ngIf="submitted && f.cta.errors">
+                <div class="alert alert-danger" role="alert" *ngIf="f.cta.errors.required">Ingrese numero</div>
+                <div class="alert alert-danger" role="alert" *ngIf="f.cta.errors.minlength">Ingrese un numero correcto</div>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="cc-expiration" class="form-label">Fecha de vencimiento</label>
+              <input type="text" class="form-control" placeholder="MM/AA" name="date" formControlName="date">
+              <div *ngIf="submitted && f.date.errors">
+                <div class="alert alert-danger" role="alert" *ngIf="f.date.errors.required">Ingrese fecha</div>
+                <div class="alert alert-danger" role="alert" *ngIf="f.date.errors.minlength">Ingrese fecha correcta</div>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="cc-cvv" class="form-label">CVV</label>
+              <input type="text" class="form-control" placeholder="CVV" name="cvv" formControlName="cvv">
+              <div *ngIf="submitted && f.cvv.errors">
+                <div class="alert alert-danger" role="alert" *ngIf="f.cvv.errors.required">Ingrese CVV</div>
+                <div class="alert alert-danger" role="alert" *ngIf="f.cvv.errors.minlength">Ingrese CVV correcto</div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <button type="submit" class="w-100 btn btn-primary btn-lg">Submit</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2017–2021 Company Name</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Privacy</a></li>
+      <li class="list-inline-item"><a href="#">Terms</a></li>
+      <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+  </footer>
+</div>

@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="abs-center">
+    <main class="form-signin">
+      <form>
+        <img class="mb-4" src="../assets/banner.png" alt="" width="600">
+        <h4 class="text-center">Store login</h4>
+        <h5 class="text-center">Complete login to continue</h5>
+    
+        <div class="form-floating">
+            <input  type="text" class="form-control" [formControl]="user" placeholder="Usuario">
+          <label for="exampleInputUser">Usuario</label>
+        </div>
+        <div class="form-floating">
+            <input  type="password" class="form-control" [formControl]="pwd" placeholder="Password">
+          <label for="exampleInputPassword">Password</label>
+        </div>
+    
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Recuérdame
+          </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit" (click)=validar()>Log In</button>
+        <br>
+        <span style="color: red;">{{alertUser}}</span>
+      </form>
+    </main>
+</div>    
+</div>
+
